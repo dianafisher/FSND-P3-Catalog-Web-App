@@ -76,6 +76,7 @@ class UserItem(Base):
     item = relationship(Item)
 
 
-engine = create_engine('sqlite:///minifigures.db')
+#engine = create_engine('sqlite:///minifigures.db')
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 
 Base.metadata.create_all(engine)

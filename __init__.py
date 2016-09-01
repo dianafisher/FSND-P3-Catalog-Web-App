@@ -39,7 +39,7 @@ from flask.ext.seasurf import SeaSurf
 from functools import wraps
 
 # Load client id from json file obtained from Google
-CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web'][
+CLIENT_ID = json.loads(open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web'][
     'client_id']
 APPLICATION_NAME = 'Catalog Appliction'
 
@@ -50,14 +50,15 @@ app = Flask(__name__)
 csrf = SeaSurf(app)
 
 # Configure file upload directory and allowed extensions
-UPLOAD_FOLDER = './uploads'
+UPLOAD_FOLDER = '/var/www/catalog/catalog/uploads'
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Limit image file size to 16 MB
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  
 
 # Connect to the database and create database session
-engine = create_engine('sqlite:///minifigures.db')
+#engine = create_engine('sqlite:///minifigures.db')
+engine = create_engine('postgresql://catalog:udacity@localhost/catalog')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -662,7 +663,7 @@ def gconnect():
 
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/var/www/catalog/catalog/client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         # Exchange the code for a credentials object
         credentials = oauth_flow.step2_exchange(code)
@@ -711,7 +712,7 @@ def gconnect():
         return response
 
     # Store the access token in the session for later use.
-    login_session['credentials'] = credentials
+    login_session['credentials'] = credentials.access_token
     login_session['gplus_id'] = gplus_id
 
     # Get user info
@@ -771,7 +772,8 @@ def gdisconnect():
         return response
 
     # Execute HTTP GET request to revoke current token.
-    access_token = credentials.access_token
+    #access_token = credentials.access_token
+    access_token = credentials
     # print 'In gdisconnect access token is %s', access_token
     url = 'https://accounts.google.com/o/oauth2/revoke?token=%s' % access_token
     h = httplib2.Http()
