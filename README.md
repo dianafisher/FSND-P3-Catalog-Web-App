@@ -13,14 +13,17 @@ The hosted application may be reached at http://ec2-52-88-231-187.us-west-2.comp
 ### Create Development Environment
 
 1. Download private key provided by Udacity
-2. ssh into instance using $ssh ~/.ssh/udacity_key.rsa root@52.88.231.187
+2. ssh into instance using ```$ ssh ~/.ssh/udacity_key.rsa root@52.88.231.187```
 
 ### User Management 
 
 Source: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps)
 
-1. Create new user: 'adduser USERNAME'
-2. Grant user sudo permissions: 
+1. Create new user: ```$ adduser <USERNAME>```
+2. Grant user sudo permissions:
+    1. ```$ visudo```
+    2. Add the following line below ```root ALL...```
+	```NEWUSER ALL=(ALL:ALL) ALL```
 
 
 
