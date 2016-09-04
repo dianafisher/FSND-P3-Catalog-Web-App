@@ -99,8 +99,6 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 4.  Create the cron file to run ntpdate daily   
  ```$ sudo nano /etc/cron.daily/ntpdate```  
 5. Add the following text:  
-```#!/bin/sh  
-ntpupdate ntp.ubuntu.com```  
 6.  Make sure the file is executable:  
 ```$ sudo chmod 755 /etc/cron.daily/ntpdate```
 
