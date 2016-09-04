@@ -224,6 +224,7 @@ Source: [Ask Ubuntu](http://askubuntu.com/questions/59458/error-message-when-i-r
  ```$ sudo nano /etc/hosts```
 
 ##### For warning, ```System restart required``` after login
+Source: [superuser.com](http://superuser.com/questions/815433/how-urgent-is-a-system-restart-required-for-security)  
 1.  List all packages which cause reboot  
 ```$ cat /var/run/reboot-required.pkgs```  
 2.  List everything with high urgency   
