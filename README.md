@@ -194,11 +194,14 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 6.  Restart Apache  
 ```$ sudo service apache2 restart```
 
- ### Setup OAuth Login
+### Setup OAuth Login
 1. Open Apache configuration file for the catalog app  
 ```$ sudo nano /etc/apache2/sites-available/catalog.conf```  
 2.  Add the following:  
 ```ServerAlias ec2-52-88-231-187.us-west-2.compute.amazonaws.com```       
+3.  Add host name and public IP address to Authorized JavaScript origins in Google Developer Console.
+4.  Download updated client_secrets.json file.
+
 
 ### Resolve Warnings
 #####For warning, ```sudo: unable to resolve host ...```  
