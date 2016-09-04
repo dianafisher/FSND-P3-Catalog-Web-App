@@ -18,7 +18,7 @@ The hosted application can be reached at [http://ec2-52-88-231-187.us-west-2.com
 
 ### User Management
 
-Source: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps)
+Sources: [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps), [How-To Geek](http://www.howtogeek.com/116757/8-ways-to-tweak-and-configure-sudo-on-ubuntu/)  
 
 1. Create new user (replace ```<new-user>``` with the username):  
  ```$ adduser <new-user>```
@@ -114,7 +114,7 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 ```$ sudo service apache2 restart```  
 
 ### Install and Configure PostgreSQL
-Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)  
+Sources: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps), [PostgreSQL Basics by Example](http://blog.trackets.com/2013/08/19/postgresql-basics-by-example.html)    
 
 1.  Install PostgreSQL:  
 ```$ sudo apt-get install postgresql```  
@@ -169,7 +169,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
 ```$ pip install flask-seasurf```  
 12. Install OAUTH2 module  
 ```$ sudo pip install --upgrade outh2client```  
-13.  Install SQL Alchemy  
+13.  Install SQLAlchemy  
 ```$ sudo pip install sqlalchemy```  
 14. Install the Python PostgreSQL adapter psycopg  
 ```$ sudo apt-get install python-psycopg2```  
@@ -184,6 +184,8 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
   ```$ git config --global user.name <name>```
 
 ### Setup Catalog App project
+Source: [SQLAlchemy Documentation](http://docs.sqlalchemy.org/en/rel_1_0/core/engines.html#postgresql)  
+
 1. Clone project from git repository  
 ```$ sudo git clone https://github.com/dianafisher/FSND-P3-Catalog-Web-App.git```  
 2.  Copy files to /var/www/catalog/catalog/  
@@ -193,7 +195,7 @@ Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-
    2.  Paste in the following line:  
    ```RedirectMatch 404 /\.git```
 4.  Modify files to create engine for the postgresql database instead of sqlite.  
-```python engine = create_engine('postgresql://catalog:<password>@localhost/catalog')```  
+```engine = create_engine('postgresql://catalog:<password>@localhost/catalog')```  
 5.  Rename application.py  
 ```$ mv application.py __init__.py```
 6.  Restart Apache  
