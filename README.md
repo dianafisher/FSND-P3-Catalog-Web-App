@@ -94,15 +94,15 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
  Sources: [Ask Ubunu](http://askubuntu.com/questions/323131/setting-timezone-from-terminal),  [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29)  
 1.  ```$ sudo dpkg-reconfigure tzdata```  
 2. Select ```None of the above``` from the list shown and then select ```UTC```.  
-3.  Install ntp (Network Time Protocol) to automatically keep the server's time accurate.  
-   1.  ```$ sudo apt-get install ntp```  
-   2. Create the cron file to run ntpdate daily   
-   ```$ sudo nano /etc/cron.daily/ntpdate```  
-    Add the following text:  
-    ```#!/bin/sh```  
+3.  Install ntp (Network Time Protocol) to automatically keep the server's time accurate  
+```$ sudo apt-get install ntp```  
+4.  Create the cron file to run ntpdate daily   
+ ```$ sudo nano /etc/cron.daily/ntpdate```  
+5. Add the following text:  
+```#!/bin/sh```  
 ```ntpupdate ntp.ubuntu.com```  
-   3.  Make sure the file is executable:  
-    ```$ sudo chmod 755 /etc/cron.daily/ntpdate```
+6.  Make sure the file is executable:  
+```$ sudo chmod 755 /etc/cron.daily/ntpdate```
 
 ### Install and Configure Apache 
 1. Install Apache web server:  
