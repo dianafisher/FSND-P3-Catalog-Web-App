@@ -101,13 +101,13 @@ Source: [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Usin
   2. Create the cron file to run ntpdate daily   
    ```$ sudo nano /etc/cron.daily/ntpdate```  
     Add the following text:  
-    ```#!/bin/sh  
-       ntpupdate ntp.ubuntu.com```
+    ```#!/bin/sh```  
+    ```ntpupdate ntp.ubuntu.com```
    3.  Make sure the file is executable:  
     ```$ sudo chmod 755 /etc/cron.daily/ntpdate```
 
 
-### Install and Configure Apache to serve a Python mod_wsgi application
+### Install and Configure Apache 
 1. Install Apache web server:  
 ```$ sudo apt-get install apache2```   
 2.  Install the WSGI module for serving Python apps from Apache  
@@ -117,7 +117,75 @@ Source: [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Usin
 4.  Restart the Apache server  
 ```$ sudo service apache2 restart```  
 
-### Install git, clone and setup Catalog App project
+### Install and Configure PostgreSQL
+1.  Install PostgreSQL:  
+```$ sudo apt-get install postgresql```  
+2.  Check that no remote connections are allowed:  
+```$ sudo nano /etc/postgresql/9.3/main/pg_hba.conf```
+3.  Create a new user for the database:  
+```$ sudo adduser catalog   
+4.  Change to postgres user  
+```$ sudo -i -u postgres```  
+5.  Connect to postgreSQL  
+```$ psql```  
+6.  Create a new PostgreSQL user named catalog   
+```# CREATE USER catalog WITH PASSWORD <password>;```  
+7.  Alter the permissions for the catalog user  
+```# ALTER USER catalog CREATEDB;```  
+8.  Create the catalog database  
+```# CREATE DATABASE catalog WITH OWNER catalog;```  
+9.  Connect to the catalog database  
+```# \c catalog```  
+10. Grant access to the catalog role only  
+```# REVOKE ALL ON SCHEMA public FROM public;```  
+```# GRANT ALL ON SCHEMA public TO catalog;```  
+11.  Exit out of PostgreSQL  
+```# \q``` 
+12.  Logout of postgres user  
+```$ logout```
+
+### Install Flask and SQLAlchemy
+1. Extend Python with additional packages to enable Apache to server Flask apps  
+```$ sudo apt-get install libapache2-mod-wsgi python-dev```  
+2. Enable mod_wsgi  
+```$ sudo a2enmod wsgi```  
+3.  Install pip installer  
+```$ sudo apt-get install python-pip```  
+4.  Install virtualenv  
+```$ sudo easy_install virtualenv```   
+5.  Set virtual environment name to venv  
+```$ sudo virtualenv venv```  
+6.  Enable permissions on the virtual environment  
+```$ sudo chmod -R 777 venv```  
+7.  Activate the virtual environment  
+```$ source venv/bin/activate```  
+8.  Install Flask inside the virtual environment  
+```$ pip install Flask```  
+9.  Install httplib2 module  
+```$ pip install httplib2```  
+10. Install request module  
+```$ pip install requests```  
+11. Install flask-seasurf module  
+```$ pip install flask-seasurf```  
+12. Install OAUTH2 module  
+```$ sudo pip install --upgrade outh2client```  
+13.  Install SQL Alchemy  
+```$ sudo pip install sqlalchemy```  
+14. Install the Python PostgreSQL adapter psycopg  
+```$ sudo apt-get install python-psycopg2```  
+15.  Deactivate the virtual environment  
+```$ deactivate```  
+
+### Install git
+1. Install Git  
+```$ sudo apt-get install git```  
+2. Set up name and email address:  
+  ```$ git config --global user.email <email-address>```  
+  ```$ git config --global user.name <name>```
+
+### Clone Catalog App project
+
+
 
       
 
