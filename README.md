@@ -91,21 +91,18 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 
 ### Configure Local Timezone to UTC
 
- Source: [Ask Ubunu](http://askubuntu.com/questions/323131/setting-timezone-from-terminal)
-
-1.  ```$ sudo dpkg-reconfigure tzdata```
-2. Select ```None of the above``` from the list shown and then select ```UTC```.
-3.  Install ntp (Network Time Protocol) to automatically keep the server's time accurate. 
-Source: [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29)
-  1.  ```$ sudo apt-get install ntp```
-  2. Create the cron file to run ntpdate daily   
+ Sources: [Ask Ubunu](http://askubuntu.com/questions/323131/setting-timezone-from-terminal),  [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29)  
+1.  ```$ sudo dpkg-reconfigure tzdata```  
+2. Select ```None of the above``` from the list shown and then select ```UTC```.  
+3.  Install ntp (Network Time Protocol) to automatically keep the server's time accurate.  
+   1.  ```$ sudo apt-get install ntp```  
+   2. Create the cron file to run ntpdate daily   
    ```$ sudo nano /etc/cron.daily/ntpdate```  
     Add the following text:  
     ```#!/bin/sh```  
-    ```ntpupdate ntp.ubuntu.com```
+```ntpupdate ntp.ubuntu.com```  
    3.  Make sure the file is executable:  
     ```$ sudo chmod 755 /etc/cron.daily/ntpdate```
-
 
 ### Install and Configure Apache 
 1. Install Apache web server:  
@@ -123,7 +120,7 @@ Source: [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Usin
 2.  Check that no remote connections are allowed:  
 ```$ sudo nano /etc/postgresql/9.3/main/pg_hba.conf```
 3.  Create a new user for the database:  
-```$ sudo adduser catalog   
+```$ sudo adduser catalog```   
 4.  Change to postgres user  
 ```$ sudo -i -u postgres```  
 5.  Connect to postgreSQL  
