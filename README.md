@@ -34,6 +34,7 @@ add
   Add the line ```Defaults  timestamp_timeout=5```
 4. Set the password for the new user  
 ```$ sudo password <new-user>```
+
 ### Update Packages
 1.  Get the list of available updates  
  ```$ sudo apt-get update```
@@ -97,9 +98,8 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 3.  Install ntp (Network Time Protocol) to automatically keep the server's time accurate  
 ```$ sudo apt-get install ntp```  
 4.  Create the cron file to run ntpdate daily   
- ```$ sudo nano /etc/cron.daily/ntpdate```  
-5. Add the following text:  
-6.  Make sure the file is executable:  
+ ```$ sudo nano /etc/cron.daily/ntpdate```   
+5.  Make sure the file is executable:  
 ```$ sudo chmod 755 /etc/cron.daily/ntpdate```
 
 ### Install and Configure Apache 
@@ -178,11 +178,27 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
   ```$ git config --global user.email <email-address>```  
   ```$ git config --global user.name <name>```
 
-### Clone Catalog App project
+### Setup Catalog App project
+1. Clone project from git repository  
+```$ sudo git clone https://github.com/dianafisher/FSND-P3-Catalog-Web-App.git```  
+2.  Copy files to /var/www/catalog/catalog/  
+3.  Ensure .git directory is not accessible:
+   1.  Create and edit .htaccess file  
+   ```$ sudo nano .htaccess```  
+   2.  Paste in the following line:  
+   ```RedirectMatch 404 /\.git```
+4.  Modify files to create engine for the postgresql database instead of sqlite.  
+```python engine = create_engine('postgresql://catalog:<password>@localhost/catalog')```  
+5.  Rename application.py  
+```$ mv application.py __init__.py```
+6.  Restart Apache  
+```$ sudo service apache2 restart```
 
-
-
-      
+ ### Setup OAuth Login
+1. Open Apache configuration file for the catalog app  
+```$ sudo nano /etc/apache2/sites-available/catalog.conf```  
+2.  Add the following:  
+```ServerAlias ec2-52-88-231-187.us-west-2.compute.amazonaws.com```       
 
 ### Resolve Warnings
 #####For warning, ```sudo: unable to resolve host ...```  
