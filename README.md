@@ -93,6 +93,7 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 ### Configure Local Timezone to UTC
 
  Sources: [Ask Ubunu](http://askubuntu.com/questions/323131/setting-timezone-from-terminal),  [Ubuntu Documentation](https://help.ubuntu.com/community/UbuntuTime#Using_the_Command_Line_.28terminal.29)  
+
 1.  ```$ sudo dpkg-reconfigure tzdata```  
 2. Select ```None of the above``` from the list shown and then select ```UTC```.  
 3.  Install ntp (Network Time Protocol) to automatically keep the server's time accurate  
@@ -113,6 +114,8 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 ```$ sudo service apache2 restart```  
 
 ### Install and Configure PostgreSQL
+Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)  
+
 1.  Install PostgreSQL:  
 ```$ sudo apt-get install postgresql```  
 2.  Check that no remote connections are allowed:  
@@ -140,6 +143,8 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 ```$ logout```
 
 ### Install Flask and SQLAlchemy
+Source: [Digital Ocean](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps)  
+
 1. Extend Python with additional packages to enable Apache to server Flask apps  
 ```$ sudo apt-get install libapache2-mod-wsgi python-dev```  
 2. Enable mod_wsgi  
@@ -195,17 +200,21 @@ Source: [Ubunu Documentation](https://help.ubuntu.com/community/UFW)
 ```$ sudo service apache2 restart```
 
 ### Setup OAuth Login
+Source: [Apache Documentation](http://httpd.apache.org/docs/2.2/en/vhosts/name-based.html)  
+
 1. Open Apache configuration file for the catalog app  
 ```$ sudo nano /etc/apache2/sites-available/catalog.conf```  
 2.  Add the following:  
-```ServerAlias ec2-52-88-231-187.us-west-2.compute.amazonaws.com```       
-3.  Add host name and public IP address to Authorized JavaScript origins in Google Developer Console.
-4.  Download updated client_secrets.json file.
+```ServerAlias ec2-52-88-231-187.us-west-2.compute.amazonaws.com``` 
+3.  Enable the virtual host  
+```$ sudo a2ensite catalog```        
+4.  Add host name and public IP address to Authorized JavaScript origins in Google Developer Console.
+5.  Download updated client_secrets.json file.
 
 
 ### Resolve Warnings
 #####For warning, ```sudo: unable to resolve host ...```  
-Source:[Ask Ubuntu](http://askubuntu.com/questions/59458/error-message-when-i-run-sudo-unable-to-resolve-host-none)  
+Source: [Ask Ubuntu](http://askubuntu.com/questions/59458/error-message-when-i-run-sudo-unable-to-resolve-host-none)  
 
 1. Open ```$ nano /etc/hostname```  
 2. Copy the hostname  
