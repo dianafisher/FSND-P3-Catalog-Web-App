@@ -32,7 +32,7 @@ add
 ```<new-user> ALL=(ALL:ALL) ALL```
   3. Require password at least once when using sudo  
   Add the line ```Defaults  timestamp_timeout=1```  
-  4. Open the ```sudoers.d``` file for the new user
+  4. Open the ```sudoers.d``` file for the new user  
   ```$ sudo nano /etc/sudoers.g/<user-name>```  
   Change ```grader ALL=(ALL) NOPASSWD: ALL``` to ```grader ALL=(ALL) PASSWD: ALL```   
 5. Set the password for the new user  
